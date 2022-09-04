@@ -1,10 +1,40 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenido al Sistema Gestor de Aplicaciones</h1>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+</div>
+<div class="text-start">
+    <p>
+        En este sistema usted prodra: <br />
+        Agregar:
+        <ul>
+            <li><code>Una nueva aplicacion</code></li>
+            <li><code>Un nuevo departamento</code></li>
+            <li><code>Un nuevo servidor</code></li>
+            <li><code>Un nuevo error</code></li>
+            <li><code>Un nuevo proyecto</code></li>
+            <li><code>Un nuevo integrante al proyecto</code></li>
+        </ul>
+        Mostrar:
+        <ul>
+            <li><code>Aplicaciones</code></li>
+            <li><code>Errores</code></li>
+            <li><code>Proyectos <strong>(con la informacion del error y los integrantes del equipo)</strong></code></li>
+        </ul>
+        Eliminar:
+        <ul>
+            <li><code>Aplicaciones</code></li>
+            <li><code>Integrantes de un proyecto</code></li>
+        </ul>
+        <div class="alert alert-secondary" role="alert">
+            <strong>Para eliminar informacion, seleccione mostrar y elija <code>Aplicaciones</code> o <code>Proyectos</code> en la ultima columna de la tabla podra encontrar un boton para eliminar informacion.</strong>
+        </div>
+        Para poder acceder a estas funcionalidades, solo basta con seleccionar <code>Agregar o Mostrar</code> y seleccionar especificamente que quiere agregar o mostrar en el dropdown que se mostrara.<br />
+        Pusede volver a esta pagina al hacer click en el logotipo en la parte izquierda del menu de navegacion.
+    </p>
 </div>
