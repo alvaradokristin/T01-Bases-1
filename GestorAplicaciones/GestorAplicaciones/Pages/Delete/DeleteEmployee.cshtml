@@ -1,0 +1,36 @@
+﻿@page
+@using System.Data.SqlClient;
+@using GestorAplicaciones.Models;
+@using System.Diagnostics
+
+@{
+    try
+    {
+        String empId = Request.Query["empId"];
+        String proId = Request.Query["proId"];
+        //Debug.WriteLine("Pro ID: " + proId);
+
+        var connString = new ConnStr();
+        String connectStr = connString.ConnectionString;
+
+        using (SqlConnection connection = new SqlConnection(connectStr))
+        {
+            connection.Open();
+
+            String sqlDel = "DELETE FROM EmpleadoXProyecto WHERE cedulaEmpleado = @empId AND idProyecto = @proId";
+            using (SqlCommand command = new SqlCommand(sqlDel, connection))
+            {
+                command.Parameters.AddWithValue("@empId", empId);
+                command.Parameters.AddWithValue("@proId", proId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception)
+    {
+        return;
+    }
+
+    Response.Redirect("/Show/ShowProjects");
+}

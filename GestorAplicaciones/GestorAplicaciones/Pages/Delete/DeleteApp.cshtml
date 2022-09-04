@@ -1,0 +1,33 @@
+﻿@page
+@using System.Data.SqlClient;
+@using GestorAplicaciones.Models;
+@using System.Diagnostics;
+
+@{
+    try 
+    {
+        String code = Request.Query["code"];
+
+        var connString = new ConnStr();
+        String connectStr = connString.ConnectionString;
+
+        using (SqlConnection connection = new SqlConnection(connectStr)) 
+        {
+            connection.Open();
+
+            String sqlDel = "DELETE FROM Aplicacion WHERE codigo = @codigo";
+            using (SqlCommand command = new SqlCommand(sqlDel, connection)) 
+            {
+                command.Parameters.AddWithValue("@codigo", code);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception)
+    {
+        return;
+    }
+
+    Response.Redirect("/Show/ShowApps");
+}

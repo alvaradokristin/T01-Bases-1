@@ -1,0 +1,88 @@
+﻿@page
+@model GestorAplicaciones.Pages.Add.AddErrorModel
+@{
+}
+
+<br />
+<h2>Agregar Error</h2>
+<br />
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-desmissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label for="error-id" class="form-label">ID del Error:</label>
+        <input type="text" class="form-control" id="error-id" name="error-id" value="@Model.errInfo.id">
+    </div>
+
+    <div class="mb-3">
+        <label for="error-desc" class="form-label">Descipcion:</label>
+        <textarea class="form-control" id="error-desc" rows="3" name="error-desc" value="@Model.errInfo.descripcion"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="error-date" class="form-label">Fecha:</label>
+        <input type="text" class="form-control" id="error-date" name="error-date" value="@Model.errInfo.fecha" placeholder="AAAA-MM-DD">
+    </div>
+
+    <div class="mb-3">
+        <label for="error-hour" class="form-label">Hora:</label>
+        <input type="text" class="form-control" id="error-hour" name="error-hour" value="@Model.errInfo.hora" placeholder="HH:mm:ss">
+    </div>
+
+    <div class="mb-3">
+        <label for="error-impact" class="form-label">Impacto del Error:</label>
+        <input type="text" class="form-control" id="error-impact" name="error-impact" value="@Model.errInfo.impacto">
+    </div>
+
+    <div class="mb-3">
+        <label for="error-server-series" class="form-label">Serie del Servidor:</label>
+        <select class="form-select" id="error-server-series" name="error-server-series">
+            <option selected> </option>
+            @foreach (var item in Model.listAppServer)
+            {
+                <option value="@item.serieServidor">@item.serieServidor</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="error-app-code" class="form-label">Codigo de la Aplicacion:</label>
+        <select class="form-select" id="error-app-code" name="error-app-code">
+            <option selected> </option>
+            @foreach (var item in Model.listAppServer)
+            {
+                <option value="@item.codigoAplicacion">@item.codigoAplicacion</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="error-pro-id" class="form-label">Id del Proyecto:</label>
+        <select class="form-select" id="error-pro-id" name="error-pro-id">
+            <option selected> </option>
+            @foreach (var item in Model.listProIds)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="alert alert-success alert-desmissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>

@@ -1,0 +1,46 @@
+﻿@page
+@model GestorAplicaciones.Pages.Show.ShowAppsModel
+@{
+}
+
+<br />
+<h2>Aplicaciones</h2>
+<br />
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Numero de Patente</th>
+                <th>Nombre de Aplicacion</th>
+                <th>Descripcion</th>
+                <th>tipo</th>
+                <th>Fecha de Produccion</th>
+                <th>Fecha de Expiracion de Licencia</th>
+                <th>Codigo de Departamento</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.listApps)
+            {
+                <tr>
+                    <td>@item.codigo</td>
+                    <td>@item.numPatente</td>
+                    <td>@item.nombre</td>
+                    <td>@item.descripcion</td>
+                    <td>@item.tipo</td>
+                    <td>@item.fechaProduccion</td>
+                    <td>@item.fechaExpiraLicencia</td>
+                    <td>@item.codigoDepartamento</td>
+                    <td>
+                        <a class="btn btn-outline-dark">Editar</a>
+                        <a class="btn btn-outline-dark" href="/Delete/DeleteApp?code=@item.codigo">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

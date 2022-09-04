@@ -1,0 +1,62 @@
+﻿@page
+@model GestorAplicaciones.Pages.Add.AddProjectEmployeeModel
+@{
+}
+
+<br />
+<h2>Agregar Empleado a Proyecto</h2>
+<br />
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-desmissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label for="exp-pro-id" class="form-label">ID del Proyecto:</label>
+        <select class="form-select" id="exp-pro-id" name="exp-pro-id">
+            <option selected> </option>
+            @foreach (var item in Model.listProjects)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="exp-emp-name" class="form-label">Cedula del Empleado:</label>
+        <select class="form-select" id="exp-emp-name" name="exp-emp-name">
+            <option selected> </option>
+            @foreach (var item in Model.listEmp)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="exp-emp-rol" class="form-label">Rol:</label>
+        <select class="form-select" id="exp-emp-rol" name="exp-emp-rol" value="@Model.newEmpRol.empRol">
+            <option selected> </option>
+            <option value="Coder">Coder</option>
+            <option value="Supervisor">Supervisor</option>
+            <option value="Tester">Tester</option>
+        </select>
+    </div>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="alert alert-success alert-desmissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>

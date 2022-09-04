@@ -1,0 +1,45 @@
+﻿@page
+@model GestorAplicaciones.Pages.Show.ShowErrorsModel
+@{
+}
+
+<br />
+<h2>Errores</h2>
+<br />
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Impacto</th>
+                <th>Serie del Servidor</th>
+                <th>Codigo de Aplicacion</th>
+                <th>ID de Proyecto</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.listErrors)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.descripcion</td>
+                    <td>@item.fecha</td>
+                    <td>@item.hora</td>
+                    <td>@item.impacto</td>
+                    <td>@item.serieServidor</td>
+                    <td>@item.codigoAplicacion</td>
+                    <td>@item.idProyecto</td>
+                    <td>
+                        <a class="btn btn-outline-dark">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

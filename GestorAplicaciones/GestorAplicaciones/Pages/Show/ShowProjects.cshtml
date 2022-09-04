@@ -1,0 +1,63 @@
+﻿@page
+@model GestorAplicaciones.Pages.Show.ShowProjectsModel
+@{
+}
+
+<br />
+<h2>Proyectos</h2>
+<br />
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID de Proyecto</th>
+                <th>Nombre de Proyecto</th>
+                <th>Descripcion del Proyecto</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Finalizacion</th>
+                <th>Esfuerzo Estimado</th>
+                <th>Esfuerzo Real</th>
+                <th>ID del Error</th>
+                <th>Descripcion del Error</th>
+                <th>Fecha del Error</th>
+                <th>Hora del Error</th>
+                <th>Impacto</th>
+                <th>Serie del Servidor</th>
+                <th>Codigo de Aplicacion</th>
+                <th>Cedula de Empleado</th>
+                <th>Nombre del Empleado</th>
+                <th>Rol del Empleado</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.listProjects)
+            {
+                <tr>
+                    <td>@item.idPro</td>
+                    <td>@item.nombrePro</td>
+                    <td>@item.descripcionPro</td>
+                    <td>@item.fechaInicio</td>
+                    <td>@item.fechaFinalizacion</td>
+                    <td>@item.esfuerzoEstimado</td>
+                    <td>@item.esfuerzoReal</td>
+                    <td>@item.idError</td>
+                    <td>@item.descripcionError</td>
+                    <td>@item.fechaError</td>
+                    <td>@item.horaError</td>
+                    <td>@item.impacto</td>
+                    <td>@item.serieServidor</td>
+                    <td>@item.codigoApp</td>
+                    <td>@item.cedulaEmpleado</td>
+                    <td>@item.nombreEmpleado</td>
+                    <td>@item.rol</td>
+                    <td>
+                        <a class="btn btn-outline-dark" href="/Delete/DeleteEmployee?empId=@item.cedulaEmpleado&proId=@item.idPro">Remover Empleado del Proyecto</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

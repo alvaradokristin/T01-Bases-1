@@ -1,0 +1,65 @@
+﻿@page
+@model GestorAplicaciones.Pages.Add.AddServerModel
+@{
+}
+
+<br />
+<h2>Agregar Servidor</h2>
+<br />
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-desmissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label for="server-series" class="form-label">Serie:</label>
+        <input type="text" class="form-control" id="server-series" name="server-series" value="@Model.serverInfo.serie">
+    </div>
+
+    <div class="mb-3">
+        <label for="server-brand" class="form-label">Marca:</label>
+        <input type="text" class="form-control" id="server-brand" name="server-brand" value="@Model.serverInfo.marca">
+    </div>
+
+    <div class="mb-3">
+        <label for="server-model" class="form-label">Modelo:</label>
+        <input type="text" class="form-control" id="server-model" name="server-model" value="@Model.serverInfo.modelo">
+    </div>
+
+    <div class="mb-3">
+        <label for="server-purchase-date" class="form-label">Fecha de Compra:</label>
+        <input type="text" class="form-control" id="server-purchase-date" name="server-purchase-date" value="@Model.serverInfo.fechaCompra" placeholder="AAAA-MM-DD">
+    </div>
+
+    <div class="mb-3">
+        <label for="server-process" class="form-label">Capacidad de Procesamiento:</label>
+        <input type="text" class="form-control" id="server-process" name="server-process" value="@Model.serverInfo.capacidadProcesamiento">
+    </div>
+
+    <div class="mb-3">
+        <label for="server-storage" class="form-label">Capacidad de Almacenamiento:</label>
+        <input type="text" class="form-control" id="server-storage" name="server-storage" value="@Model.serverInfo.capacidadAlmacenamiento">
+    </div>
+
+    <div class="mb-3">
+        <label for="server-memory" class="form-label">Memoria:</label>
+        <input type="text" class="form-control" id="server-memory" name="server-memory" value="@Model.serverInfo.memoria">
+    </div>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="alert alert-success alert-desmissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
