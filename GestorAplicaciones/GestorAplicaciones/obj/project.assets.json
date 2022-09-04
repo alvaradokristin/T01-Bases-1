@@ -470,19 +470,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kalva\\.nuget\\packages\\": {}
+    "C:\\Users\\kag07\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kalva\\source\\repos\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
+      "projectUniqueName": "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
       "projectName": "GestorAplicaciones",
-      "projectPath": "C:\\Users\\kalva\\source\\repos\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
-      "packagesPath": "C:\\Users\\kalva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kalva\\source\\repos\\GestorAplicaciones\\GestorAplicaciones\\obj\\",
+      "projectPath": "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
+      "packagesPath": "C:\\Users\\kag07\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\GestorAplicaciones\\GestorAplicaciones\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kalva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kag07\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
