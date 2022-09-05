@@ -7,7 +7,8 @@
 <h2>Crear Aplicacion</h2>
 <br />
 
-@if (Model.errorMessage.Length > 0) {
+@if (Model.errorMessage.Length > 0)
+{
     <div class="alert alert-warning alert-desmissible fade show" role="alert">
         <strong>@Model.errorMessage</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
@@ -60,6 +61,35 @@
         <input type="text" class="form-control" id="app-dept" name="app-dept" value="@Model.appInfo.codigoDepartamento">
     </div>
 
+    @*ADD SERVER INFO*@
+    <br />
+    <div class="mb-3">
+        <h6><code>Agregar un servidor y el rol de este en la aplicacion</code></h6>
+        <hr class="solid">
+    </div>
+
+    <div class="mb-3">
+        <label for="app-server" class="form-label">Servidor:</label>
+        <select class="form-select" id="app-server" name="app-server">
+            <option selected> </option>
+            @foreach (var item in Model.listServers)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="app-server-rol" class="form-label">Rol:</label>
+        <select class="form-select" id="app-server-rol" name="app-server-rol">
+            <option selected> </option>
+            <option value="Production">Production</option>
+            <option value="Testing">Testing</option>
+            <option value="Stagging">Stagging</option>
+            <option value="Backup">Backup</option>
+        </select>
+    </div>
+
     @if (Model.successMessage.Length > 0)
     {
         <div class="row mb-3">
@@ -70,5 +100,5 @@
         </div>
     }
 
-    <button type="submit" class="btn btn-primary">Agregar</button>
+    <button type="submit" class="btn btn-outline-secondary">Agregar</button>
 </form>

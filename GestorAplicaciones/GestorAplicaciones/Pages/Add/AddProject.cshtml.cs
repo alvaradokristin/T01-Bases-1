@@ -113,6 +113,8 @@ namespace GestorAplicaciones.Pages.Add
             proInfo.idError = "";
 
             successMessage = "El proyecto se agrego con exito a la base de datos";
+
+            Response.Redirect("/Add/AddProject");
         }
     }
 }

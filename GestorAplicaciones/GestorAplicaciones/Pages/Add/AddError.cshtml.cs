@@ -180,6 +180,8 @@ namespace GestorAplicaciones.Pages.Add
             errInfo.idProyecto = "";
 
             successMessage = "El error se agrego con exito a la base de datos";
+
+            Response.Redirect("/Add/AddError");
         }
     }
 }

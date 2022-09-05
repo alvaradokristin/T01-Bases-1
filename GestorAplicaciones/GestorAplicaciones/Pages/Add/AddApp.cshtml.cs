@@ -10,10 +10,44 @@ namespace GestorAplicaciones.Pages.Add
     public class AddAppModel : PageModel
     {
         public AppInfo appInfo = new AppInfo();
+        public List<String> listServers = new List<String>();
+
         public String errorMessage = "";
         public String successMessage = "";
         public void OnGet()
         {
+            try
+            {
+                var connString = new ConnStr();
+                String connectStr = connString.ConnectionString;
+
+                using (SqlConnection connection = new SqlConnection(connectStr))
+                {
+                    connection.Open();
+
+                    String sqlSelectAllSeries = "SELECT serie FROM Servidor";
+
+                    using (SqlCommand command = new SqlCommand(sqlSelectAllSeries, connection))
+                    {
+                        using (SqlDataReader readerProIds = command.ExecuteReader())
+                        {
+                            while (readerProIds.Read())
+                            {
+                                String series;
+
+                                series = "" + readerProIds["serie"];
+
+                                // Add the object to the list
+                                listServers.Add(series);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception: " + ex.ToString());
+            }
         }
 
         public void OnPost()
@@ -26,10 +60,12 @@ namespace GestorAplicaciones.Pages.Add
             appInfo.fechaProduccion = Request.Form["app-prod-date"];
             appInfo.fechaExpiraLicencia = Request.Form["app-linc-exp"];
             appInfo.codigoDepartamento = Request.Form["app-dept"];
+            String server = Request.Form["app-server"];
+            String serverRol = Request.Form["app-server-rol"];
 
-            if (appInfo.codigo.Length == 0 || appInfo.numPatente.Length == 0 || 
-                appInfo.nombre.Length == 0 || appInfo.descripcion.Length == 0 || appInfo.tipo.Length == 0 || 
-                appInfo.codigoDepartamento.Length == 0)
+            if (appInfo.codigo.Length == 0 || appInfo.numPatente.Length == 0 ||
+                appInfo.nombre.Length == 0 || appInfo.descripcion.Length == 0 || appInfo.tipo.Length == 0 ||
+                appInfo.codigoDepartamento.Length == 0 || server.Length == 0 || serverRol.Length == 0)
             {
                 errorMessage = "Todos los campos deben tener informacion, solo las fechas pueden estar vacias";
                 return;
@@ -46,7 +82,9 @@ namespace GestorAplicaciones.Pages.Add
                     connection.Open();
 
                     String sqlInsert = "INSERT INTO Aplicacion (codigo, numPatente, nombre, descripcion, tipo, fechaProduccion, fechaExpiraLicencia, codigoDepartamento) \r\nVALUES \r\n" +
-                        "(@codigo, @numPatente, @nombre, @descripcion, @tipo, @fechaProduccion, @fechaExpiraLicencia, @codigoDepartamento)";
+                        "(@codigo, @numPatente, @nombre, @descripcion, @tipo, @fechaProduccion, @fechaExpiraLicencia, @codigoDepartamento)\n\t " +
+                        "INSERT INTO ServidorXAplicacion (codigoAplicacion, serieServidor, rol) VALUES\n\t " +
+                        "(@codigo, @serieServidor, @rol)";
 
                     using (SqlCommand command = new SqlCommand(sqlInsert, connection))
                     {
@@ -58,11 +96,13 @@ namespace GestorAplicaciones.Pages.Add
                         command.Parameters.AddWithValue("@fechaProduccion", appInfo.fechaProduccion);
                         command.Parameters.AddWithValue("@fechaExpiraLicencia", appInfo.fechaExpiraLicencia);
                         command.Parameters.AddWithValue("@codigoDepartamento", appInfo.codigoDepartamento);
+                        command.Parameters.AddWithValue("@serieServidor", server);
+                        command.Parameters.AddWithValue("@rol", serverRol);
 
                         command.ExecuteNonQuery();
                     }
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 errorMessage = ex.Message;
@@ -78,8 +118,12 @@ namespace GestorAplicaciones.Pages.Add
             appInfo.fechaProduccion = "";
             appInfo.fechaExpiraLicencia = "";
             appInfo.codigoDepartamento = "";
+            server = "";
+            serverRol = "";
 
             successMessage = "La aplicacion se agrego con exito a la base de datos";
+
+            Response.Redirect("/Add/AddApp");
         }
     }
 }
