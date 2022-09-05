@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model GestorAplicaciones.Pages.Add.AddAppModel
 @{
 }
@@ -58,7 +58,13 @@
 
     <div class="mb-3">
         <label for="app-dept" class="form-label">Codigo de Departamento a Cargo:</label>
-        <input type="text" class="form-control" id="app-dept" name="app-dept" value="@Model.appInfo.codigoDepartamento">
+        <select class="form-select" id="app-dept" name="app-dept">
+            <option selected> </option>
+            @foreach (var item in Model.listDept)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
     </div>
 
     @*ADD SERVER INFO*@
