@@ -11,6 +11,7 @@ namespace GestorAplicaciones.Pages.Add
     {
         public AppInfo appInfo = new AppInfo();
         public List<String> listServers = new List<String>();
+        public List<String> listDept = new List<String>();
 
         public String errorMessage = "";
         public String successMessage = "";
@@ -26,6 +27,7 @@ namespace GestorAplicaciones.Pages.Add
                     connection.Open();
 
                     String sqlSelectAllSeries = "SELECT serie FROM Servidor";
+                    String sqlSelectAllDepts = "SELECT codigo FROM Departamento";
 
                     using (SqlCommand command = new SqlCommand(sqlSelectAllSeries, connection))
                     {
@@ -39,6 +41,22 @@ namespace GestorAplicaciones.Pages.Add
 
                                 // Add the object to the list
                                 listServers.Add(series);
+                            }
+                        }
+                    }
+
+                    using (SqlCommand command = new SqlCommand(sqlSelectAllDepts, connection))
+                    {
+                        using (SqlDataReader readerDepts = command.ExecuteReader())
+                        {
+                            while (readerDepts.Read())
+                            {
+                                String code;
+
+                                code = "" + readerDepts["codigo"];
+
+                                // Add the object to the list
+                                listDept.Add(code);
                             }
                         }
                     }
