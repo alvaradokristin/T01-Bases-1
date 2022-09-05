@@ -7,6 +7,7 @@
 <h2>Proyectos</h2>
 <br />
 
+@*TABLE TO SHOW THE INFORMATION FROM THE SQL TABLE*@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -33,6 +34,7 @@
         </thead>
 
         <tbody>
+            @*CREATE THE TABLES ROWS AND ASSIGN THEM THE INFORMATION FROM THE DB*@
             @foreach (var item in Model.listProjects)
             {
                 <tr>
@@ -53,6 +55,8 @@
                     <td>@item.cedulaEmpleado</td>
                     <td>@item.nombreEmpleado</td>
                     <td>@item.rol</td>
+
+                    @*ADD A BUTTON TO DELETE THAT EMPLOYEE FROM THAT PROJECT*@
                     <td>
                         <a class="btn btn-outline-danger" href="/Delete/DeleteEmployee?empId=@item.cedulaEmpleado&proId=@item.idPro">Remover Integrante</a>
                     </td>

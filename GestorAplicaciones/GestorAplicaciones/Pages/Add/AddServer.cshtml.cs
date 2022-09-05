@@ -8,16 +8,21 @@ namespace GestorAplicaciones.Pages.Add
 {
     public class AddServerModel : PageModel
     {
+        // Attributes to populate information on the website and to get the user input to update the DB
         public ServerInfo serverInfo = new ServerInfo();
 
         public String errorMessage = "";
         public String successMessage = "";
+
+        // Method to get information from the DB, since we don't need to get info, this is not needed at the moment
         public void OnGet()
         {
         }
 
+        // Method to sent information to the DB
         public void OnPost()
         {
+            // Asign the data from the website input into an object/variables
             serverInfo.serie = Request.Form["server-series"];
             serverInfo.marca = Request.Form["server-brand"];
             serverInfo.modelo = Request.Form["server-model"];
@@ -26,6 +31,7 @@ namespace GestorAplicaciones.Pages.Add
             serverInfo.capacidadAlmacenamiento = Request.Form["server-storage"];
             serverInfo.memoria = Request.Form["server-memory"];
 
+            // Verify that the necessary fileds have information
             if (serverInfo.serie.Length == 0 || serverInfo.marca.Length == 0 || serverInfo.modelo.Length == 0
                  || serverInfo.fechaCompra.Length == 0 || serverInfo.capacidadProcesamiento.Length == 0 || serverInfo.capacidadAlmacenamiento.Length == 0
                   || serverInfo.memoria.Length == 0)
@@ -44,11 +50,13 @@ namespace GestorAplicaciones.Pages.Add
                 {
                     connection.Open();
 
+                    // Query to send/edit the data to the DB
                     String sqlInsert = "INSERT INTO Servidor (serie, marca, modelo, fechaCompra, capacidadProcesamiento, capacidadAlmacenamiento, memoria) VALUES " +
                         "(@serie, @marca, @modelo, @fechaCompra, @capacidadProcesamiento, @capacidadAlmacenamiento, @memoria)";
 
                     using (SqlCommand command = new SqlCommand(sqlInsert, connection))
                     {
+                        // Add the data from the input to the query parameters
                         command.Parameters.AddWithValue("@serie", serverInfo.serie);
                         command.Parameters.AddWithValue("@marca", serverInfo.marca);
                         command.Parameters.AddWithValue("@modelo", serverInfo.modelo);
@@ -57,6 +65,7 @@ namespace GestorAplicaciones.Pages.Add
                         command.Parameters.AddWithValue("@capacidadAlmacenamiento", serverInfo.capacidadAlmacenamiento);
                         command.Parameters.AddWithValue("@memoria", serverInfo.memoria);
 
+                        // Execute the query
                         command.ExecuteNonQuery();
                     }
                 }
@@ -67,6 +76,7 @@ namespace GestorAplicaciones.Pages.Add
                 return;
             }
 
+            // Clear the fileds/attributes data
             serverInfo.serie = "";
             serverInfo.marca = "";
             serverInfo.modelo = "";

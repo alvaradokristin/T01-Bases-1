@@ -6,10 +6,12 @@
 @{
     try
     {
+        // Get the necessary info to use as parameter on the SQL query
         String empId = Request.Query["empId"];
         String proId = Request.Query["proId"];
         //Debug.WriteLine("Pro ID: " + proId);
 
+        // Connection string to connect to the DB
         var connString = new ConnStr();
         String connectStr = connString.ConnectionString;
 
@@ -17,12 +19,15 @@
         {
             connection.Open();
 
+            // Query to be use
             String sqlDel = "DELETE FROM EmpleadoXProyecto WHERE cedulaEmpleado = @empId AND idProyecto = @proId";
             using (SqlCommand command = new SqlCommand(sqlDel, connection))
             {
+                // Add the data from the input to the query parameters
                 command.Parameters.AddWithValue("@empId", empId);
                 command.Parameters.AddWithValue("@proId", proId);
 
+                // Execute the query
                 command.ExecuteNonQuery();
             }
         }

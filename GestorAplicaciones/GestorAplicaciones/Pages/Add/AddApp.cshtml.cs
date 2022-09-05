@@ -9,16 +9,20 @@ namespace GestorAplicaciones.Pages.Add
 {
     public class AddAppModel : PageModel
     {
+        // Attributes to populate information on the website and to get the user input to update the DB
         public AppInfo appInfo = new AppInfo();
         public List<String> listServers = new List<String>();
         public List<String> listDept = new List<String>();
 
         public String errorMessage = "";
         public String successMessage = "";
+
+        // Method to get information from the DB and use it on the website
         public void OnGet()
         {
             try
             {
+                // Use the connection String to connect the web site to the DB
                 var connString = new ConnStr();
                 String connectStr = connString.ConnectionString;
 
@@ -26,11 +30,13 @@ namespace GestorAplicaciones.Pages.Add
                 {
                     connection.Open();
 
+                    // Queries to be use
                     String sqlSelectAllSeries = "SELECT serie FROM Servidor";
                     String sqlSelectAllDepts = "SELECT codigo FROM Departamento";
 
                     using (SqlCommand command = new SqlCommand(sqlSelectAllSeries, connection))
                     {
+                        // Execute the query to create a list of all server series ids
                         using (SqlDataReader readerProIds = command.ExecuteReader())
                         {
                             while (readerProIds.Read())
@@ -47,6 +53,7 @@ namespace GestorAplicaciones.Pages.Add
 
                     using (SqlCommand command = new SqlCommand(sqlSelectAllDepts, connection))
                     {
+                        // Execute the query to create a list of all department codes
                         using (SqlDataReader readerDepts = command.ExecuteReader())
                         {
                             while (readerDepts.Read())
@@ -68,8 +75,10 @@ namespace GestorAplicaciones.Pages.Add
             }
         }
 
+        // Method to sent information to the DB
         public void OnPost()
         {
+            // Asign the data from the website input into an object/variables
             appInfo.codigo = Request.Form["app-code"];
             appInfo.numPatente = Request.Form["app-patent-num"];
             appInfo.nombre = Request.Form["app-name"];
@@ -81,6 +90,7 @@ namespace GestorAplicaciones.Pages.Add
             String server = Request.Form["app-server"];
             String serverRol = Request.Form["app-server-rol"];
 
+            // Verify that the necessary fileds have information
             if (appInfo.codigo.Length == 0 || appInfo.numPatente.Length == 0 ||
                 appInfo.nombre.Length == 0 || appInfo.descripcion.Length == 0 || appInfo.tipo.Length == 0 ||
                 appInfo.codigoDepartamento.Length == 0 || server.Length == 0 || serverRol.Length == 0)
@@ -99,6 +109,7 @@ namespace GestorAplicaciones.Pages.Add
                 {
                     connection.Open();
 
+                    // Query to send/edit the data to the DB
                     String sqlInsert = "INSERT INTO Aplicacion (codigo, numPatente, nombre, descripcion, tipo, fechaProduccion, fechaExpiraLicencia, codigoDepartamento) \r\nVALUES \r\n" +
                         "(@codigo, @numPatente, @nombre, @descripcion, @tipo, @fechaProduccion, @fechaExpiraLicencia, @codigoDepartamento)\n\t " +
                         "INSERT INTO ServidorXAplicacion (codigoAplicacion, serieServidor, rol) VALUES\n\t " +
@@ -106,6 +117,7 @@ namespace GestorAplicaciones.Pages.Add
 
                     using (SqlCommand command = new SqlCommand(sqlInsert, connection))
                     {
+                        // Add the data from the input to the query parameters
                         command.Parameters.AddWithValue("@codigo", appInfo.codigo);
                         command.Parameters.AddWithValue("@numPatente", appInfo.numPatente);
                         command.Parameters.AddWithValue("@nombre", appInfo.nombre);
@@ -117,6 +129,7 @@ namespace GestorAplicaciones.Pages.Add
                         command.Parameters.AddWithValue("@serieServidor", server);
                         command.Parameters.AddWithValue("@rol", serverRol);
 
+                        // Execute the query
                         command.ExecuteNonQuery();
                     }
                 }

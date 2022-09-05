@@ -7,6 +7,7 @@
 <h2>Crear Departamento</h2>
 <br />
 
+@*IN CASE THERE IS AN ERROR, IT WILL BE VISIBLE ON THE PAGE FOR THE USER TO KNOW*@
 @if (Model.errorMessage.Length > 0)
 {
     <div class="alert alert-warning alert-desmissible fade show" role="alert">
@@ -15,6 +16,7 @@
     </div>
 }
 
+@*FORM TO GET THE USER INPUT TO UPDATE THE DATABASE*@
 <form method="post">
     <div class="mb-3">
         <label for="dept-code" class="form-label">Codigo del Departamento:</label>

@@ -6,9 +6,11 @@
 @{
     try 
     {
+        // Get the code from the URL query
         String code = Request.Query["code"];
         //Debug.WriteLine(code);
 
+        // Connection string to connect to the DB
         var connString = new ConnStr();
         String connectStr = connString.ConnectionString;
 
@@ -16,12 +18,15 @@
         {
             connection.Open();
 
+            // Query to be use
             String sqlDel = "DELETE FROM Error WHERE codigoAplicacion = @codigo DELETE FROM ServidorXAplicacion WHERE codigoAplicacion = @codigo DELETE FROM Aplicacion WHERE codigo = @codigo";
 
             using (SqlCommand command = new SqlCommand(sqlDel, connection)) 
             {
+                // Add the data from the input to the query parameters
                 command.Parameters.AddWithValue("@codigo", code);
 
+                // Execute the query
                 command.ExecuteNonQuery();
             }
         }

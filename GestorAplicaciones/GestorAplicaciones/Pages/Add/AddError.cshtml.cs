@@ -9,6 +9,7 @@ namespace GestorAplicaciones.Pages.Add
 {
     public class AddErrorModel : PageModel
     {
+        // Attributes to populate information on the website and to get the user input to update the DB
         public ErrInfo errInfo = new ErrInfo();
         public String errorMessage = "";
         public String successMessage = "";
@@ -17,10 +18,14 @@ namespace GestorAplicaciones.Pages.Add
         public List<ErrInfo> listErrors = new List<ErrInfo>();
         public List<AppxServer> listAppServer = new List<AppxServer>();
         public List<String> listProIds = new List<String>();
+
+        // Method to get information from the DB and use it on the website
+
         public void OnGet()
         {
             try
             {
+                // Use the connection String to connect the web site to the DB
                 var connString = new ConnStr();
                 String connectStr = connString.ConnectionString;
 
@@ -28,6 +33,7 @@ namespace GestorAplicaciones.Pages.Add
                 {
                     connection.Open();
 
+                    // Queries to be use
                     String sqlSelectAllErrors = "SELECT * FROM Error";
                     String sqlSelectAllSerxApp = "SELECT * FROM ServidorXAplicacion";
                     String sqlSelectAllPro = "SELECT id FROM Proyecto";
@@ -35,8 +41,10 @@ namespace GestorAplicaciones.Pages.Add
                     // This allow us to execute the SQL query above
                     using (SqlCommand command = new SqlCommand(sqlSelectAllErrors, connection))
                     {
+                        // Execute the query to create a list of all errors
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
+                            // Temp variables to convert from string to date and get only the date or time
                             String tempString;
                             DateTime tempDateTime;
 
