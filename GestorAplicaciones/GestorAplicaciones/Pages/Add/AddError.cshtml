@@ -38,7 +38,13 @@
 
     <div class="mb-3">
         <label for="error-impact" class="form-label">Impacto del Error:</label>
-        <input type="text" class="form-control" id="error-impact" name="error-impact" value="@Model.errInfo.impacto">
+        <select class="form-select" id="error-impact" name="error-impact">
+            <option selected> </option>
+            <option value="Bajo">Bajo</option>
+            <option value="Medio">Medio</option>
+            <option value="Alto">Alto</option>
+            <option value="Desconocido">Desconocido</option>
+        </select>
     </div>
 
     <div class="mb-3">
