@@ -1,4 +1,4 @@
-﻿@page
+@page
 @using System.Data.SqlClient;
 @using GestorAplicaciones.Models;
 @using System.Diagnostics;
@@ -7,6 +7,7 @@
     try 
     {
         String code = Request.Query["code"];
+        //Debug.WriteLine(code);
 
         var connString = new ConnStr();
         String connectStr = connString.ConnectionString;
@@ -15,7 +16,8 @@
         {
             connection.Open();
 
-            String sqlDel = "DELETE FROM Aplicacion WHERE codigo = @codigo";
+            String sqlDel = "DELETE FROM Error WHERE codigoAplicacion = @codigo DELETE FROM ServidorXAplicacion WHERE codigoAplicacion = @codigo DELETE FROM Aplicacion WHERE codigo = @codigo";
+
             using (SqlCommand command = new SqlCommand(sqlDel, connection)) 
             {
                 command.Parameters.AddWithValue("@codigo", code);
