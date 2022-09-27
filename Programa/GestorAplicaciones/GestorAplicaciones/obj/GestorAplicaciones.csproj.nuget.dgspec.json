@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj": {}
+    "C:\\Users\\Krispin\\Documents\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj": {
+    "C:\\Users\\Krispin\\Documents\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
+        "projectUniqueName": "C:\\Users\\Krispin\\Documents\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
         "projectName": "GestorAplicaciones",
-        "projectPath": "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
-        "packagesPath": "C:\\Users\\kag07\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kag07\\OneDrive\\Documentos\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\obj\\",
+        "projectPath": "C:\\Users\\Krispin\\Documents\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\GestorAplicaciones.csproj",
+        "packagesPath": "C:\\Users\\Krispin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Krispin\\Documents\\GitHub\\T01-Bases-1\\Programa\\GestorAplicaciones\\GestorAplicaciones\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kag07\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Krispin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
